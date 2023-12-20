@@ -12,9 +12,11 @@ N = I()                         #一つの数字
 # A = LI()                        #シンプルに数列一行を読み込む
 # A = [LI() for _ in range(N)]    #N行の数字列を二次元配列に
 
-
-ans = math.floor(math.log2(N))
-print(ans)
-
+for i in range(999):
+    if N < 2**i:
+        print(i-1)
+        exit()
 ## WA
 # 少数の丸め誤差が出るらしい
+# ans = math.floor(math.log2(N))
+# print(ans)
