@@ -15,6 +15,22 @@ def LS(): return list(sys.stdin.readline().rstrip().split())
 
 S,K = MS()
 K = int(K)
-for seq in itertools.combinations(range(K),2):
-    print(seq)
+
+# 配列と違い、重複をなくせる
+S_set = set()
+
+# 引数として列挙可能なオブジェクトが必要
+for seq in itertools.permutations(range(len(S))):
+    S_tmp =""
+    # 文字列を連結する
+    for i in seq:
+        S_tmp += S[i]
+        
+    # セットにっ格納
+    S_set.add(S_tmp)
+
+S_list = list(S_set)
+S_list.sort()
+
+print(S_list[K-1])
 
