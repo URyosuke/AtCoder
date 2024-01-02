@@ -14,4 +14,19 @@ N = SI()                         # 一つの数字
 # A = LI()                        # シンプルに数列一行を読み込む
 # A = [LI() for _ in range(N)]    # N行の数字列を二次元配列に
 
-inbox = 0
+# inbox = 1
+amari = 0
+ans = ''
+
+while 0<N:
+    amari = N % 2
+    if amari == 1:
+        ans = 'A' + ans
+        N -= 1
+    else:
+        ans = 'B' + ans
+        N //= 2
+
+print(ans)
+        
+    
