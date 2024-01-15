@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+import bisect,collections,copy,heapq,itertools,math,numpy,string;
+import sys
+def SI(): return int(sys.stdin.readline().rstrip())
+def MI(): return map(int, sys.stdin.readline().rstrip().split())
+def LI(): return list(map(int, sys.stdin.readline().rstrip().split()))
+def SS(): return sys.stdin.readline().rstrip()
+def MS(): return map(str, sys.stdin.readline().rstrip().split())
+def LS(): return list(sys.stdin.readline().rstrip().split())
+
+# N = SI()                         # 一つの数字
+# A,B = MI()                      # 空白区切りで複数の数字が与えられ、それらを別々の変数に格納したい時
+# S = MS()                        # 複数の文字列を空白区切りで与えられた時
+# A = LI()                        # 空白区切りの数列一行を読み込む
+# A = [LI() for _ in range(N)]    # N行の数字列を二次元配列に
+
+P = LI()
+ans=""
+
+# P1~P26(P[0]~P[25])まで
+for x in P:
+    # 文字コードx+96の文字をansの末尾へ追加
+    ans+=chr(x+96)
+
+# 答えを出力
+print(ans)
