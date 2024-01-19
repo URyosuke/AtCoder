@@ -1,1 +1,10 @@
 */test/*
+*.in
+*.out
+*.json
+
+d/
+e/
+f/
+g/
+h/
