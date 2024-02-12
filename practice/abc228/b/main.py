@@ -8,45 +8,29 @@ def SS(): return sys.stdin.readline().rstrip()
 def MS(): return map(str, sys.stdin.readline().rstrip().split())
 def LS(): return list(sys.stdin.readline().rstrip().split())
 
-N = SI()  # 一つの数字
+# N = SI()                         # 一つの数字
 # A,B = MI()                      # 空白区切りで複数の数字が与えられ、それらを別々の変数に格納したい時
 # S = MS()                        # 複数の文字列を空白区切りで与えられた時
 # A = LI()                        # シンプルに数列一行を読み込む
 # A = [LI() for _ in range(N)]    # N行の数字列を二次元配列に
+N,X = MI()
+A = LI()
+
 from collections import deque
+friends = [False]*N
 que = deque()
-T = [0]
-A = [[0]]
+que.append(A[X-1])
+# 最初に知る人
+friends[X-1] = True
 
-# T, K, Aを分けて入力
+while len(que) != 0:
+    known = que.popleft()
+    if friends[known-1] == False:
+        friends[known-1] = True
+        que.append(A[known-1])
+
+count=0
 for i in range(N):
-    tmp = LI()
-    T.append(tmp[0])
-    K = tmp[1]
-    if 0 < K:
-        a_list = tmp[2:]
-        A.append(a_list)
-    else:
-        A.append([-1])
-
-# 習得する必要がある技
-learn=[False]*(N+1)
-
-learn[N] = True
-que.append(N)
-
-while 0<len(que):
-    waza = que.popleft()
-    for x in A[waza]:
-        if x == -1:
-            break
-        if learn[x] == False:
-            que.append(x)
-            learn[x] = True
-
-ans = 0
-
-for i in range(1,N+1):
-    if learn[i] == True:
-        ans += T[i]
-print(ans)
+    if friends[i] == True:
+        count += 1
+print(count)

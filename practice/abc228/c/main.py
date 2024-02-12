@@ -8,45 +8,38 @@ def SS(): return sys.stdin.readline().rstrip()
 def MS(): return map(str, sys.stdin.readline().rstrip().split())
 def LS(): return list(sys.stdin.readline().rstrip().split())
 
-N = SI()  # 一つの数字
+# N = SI()                         # 一つの数字
 # A,B = MI()                      # 空白区切りで複数の数字が与えられ、それらを別々の変数に格納したい時
 # S = MS()                        # 複数の文字列を空白区切りで与えられた時
 # A = LI()                        # シンプルに数列一行を読み込む
 # A = [LI() for _ in range(N)]    # N行の数字列を二次元配列に
-from collections import deque
-que = deque()
-T = [0]
-A = [[0]]
+N,K = MI()
+P = [LI() for _ in range(N)]
+sumP = []
 
-# T, K, Aを分けて入力
+# それぞれ3日目までの合計点
 for i in range(N):
-    tmp = LI()
-    T.append(tmp[0])
-    K = tmp[1]
-    if 0 < K:
-        a_list = tmp[2:]
-        A.append(a_list)
+    sumP.append([sum(P[i])])
+    sumP[i].append(i)
+sumP.sort(reverse=True)
+
+# K位以内に入る可能性があるかどうか判定するリスト
+is_pass = [False]*N
+    
+for i in range(N):
+    if i == 0:
+        is_pass[sumP[i][1]] = True
+        continue
+    if i+1 <= K:
+        is_pass[sumP[i][1]] = True
+        continue
     else:
-        A.append([-1])
+        if (sumP[K-1][0] - sumP[i][0]) <= 300:
+            is_pass[sumP[i][1]] = True
 
-# 習得する必要がある技
-learn=[False]*(N+1)
-
-learn[N] = True
-que.append(N)
-
-while 0<len(que):
-    waza = que.popleft()
-    for x in A[waza]:
-        if x == -1:
-            break
-        if learn[x] == False:
-            que.append(x)
-            learn[x] = True
-
-ans = 0
-
-for i in range(1,N+1):
-    if learn[i] == True:
-        ans += T[i]
-print(ans)
+for i in range(N):
+    if is_pass[i] == True:
+        print('Yes')
+    else:
+        print('No')        
+        
