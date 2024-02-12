@@ -8,17 +8,22 @@ def SS(): return sys.stdin.readline().rstrip()
 def MS(): return map(str, sys.stdin.readline().rstrip().split())
 def LS(): return list(sys.stdin.readline().rstrip().split())
 
-N = SI()                         # 一つの数字
+# N = SI()                         # 一つの数字
 # A,B = MI()                      # 空白区切りで複数の数字が与えられ、それらを別々の変数に格納したい時
 # S = MS()                        # 複数の文字列を空白区切りで与えられた時
 # A = LI()                        # シンプルに数列一行を読み込む
 # A = [LI() for _ in range(N)]    # N行の数字列を二次元配列に
-ans = 0
-for a in range(1,N+1):
-    if a*a*a > N:
-        break
-    for b in range(a,N+1):
-        if a*b*b > N:
-            break
-        ans += N // (a*b) - b+1
-print(ans)
+S1 = SS()
+S2 = SS()
+if S1 == '##' or S2 == '##':
+    print('Yes')
+elif S1 == '.#':
+    if S2 == '.#':
+        print('Yes')
+    else:
+        print('No')
+else:
+    if S2 == '#.':
+        print('Yes')
+    else:
+        print('No')
