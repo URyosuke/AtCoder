@@ -13,24 +13,9 @@ def LS(): return list(sys.stdin.readline().rstrip().split())
 # S = MS()                        # 複数の文字列を空白区切りで与えられた時
 # A = LI()                        # シンプルに数列一行を読み込む
 # A = [LI() for _ in range(N)]    # N行の数字列を二次元配列に
-N,X = MI()
-L = []
-a = []
-
-for i in range(N):
-    tmp = LI()
-    L.append(tmp[0])
-    a.append(list(tmp[1:]))
-
-def DSP(pro,i):
-    global ans
-    if i == N:
-        if pro == X:
-            ans += 1
-        return
-    for j in range(L[i]):
-        DSP(pro*a[i][j], i+1)
-
-ans = 0
-DSP(1,0)
+num = SS()
+num1 = int(num)
+num2 = int(num[1]+num[2]+num[0])
+num3 = int(num[2]+num[0]+num[1])
+ans = num1 + num2 + num3
 print(ans)

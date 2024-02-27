@@ -13,24 +13,17 @@ def LS(): return list(sys.stdin.readline().rstrip().split())
 # S = MS()                        # 複数の文字列を空白区切りで与えられた時
 # A = LI()                        # シンプルに数列一行を読み込む
 # A = [LI() for _ in range(N)]    # N行の数字列を二次元配列に
-N,X = MI()
-L = []
-a = []
-
-for i in range(N):
-    tmp = LI()
-    L.append(tmp[0])
-    a.append(list(tmp[1:]))
-
-def DSP(pro,i):
-    global ans
-    if i == N:
-        if pro == X:
-            ans += 1
-        return
-    for j in range(L[i]):
-        DSP(pro*a[i][j], i+1)
-
-ans = 0
-DSP(1,0)
-print(ans)
+from string import ascii_lowercase
+N = SI()
+S = SS()
+Q = SI()
+# 変換前と変換後の文字列を作る
+# 'abcdefghijklmnopqrstuvwxyz' で初期化
+mapping_from = ascii_lowercase
+mapping_to = ascii_lowercase
+for _ in range(Q):
+    c, d = MS()
+    mapping_to = mapping_to.replace(c, d) # c を d に置き換える
+# 対応する文字をそれぞれ置き換える
+print(S.translate(str.maketrans(mapping_from, mapping_to)))
+        

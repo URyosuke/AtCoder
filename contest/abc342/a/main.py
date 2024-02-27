@@ -13,24 +13,19 @@ def LS(): return list(sys.stdin.readline().rstrip().split())
 # S = MS()                        # 複数の文字列を空白区切りで与えられた時
 # A = LI()                        # シンプルに数列一行を読み込む
 # A = [LI() for _ in range(N)]    # N行の数字列を二次元配列に
-N,X = MI()
-L = []
-a = []
-
-for i in range(N):
-    tmp = LI()
-    L.append(tmp[0])
-    a.append(list(tmp[1:]))
-
-def DSP(pro,i):
-    global ans
-    if i == N:
-        if pro == X:
-            ans += 1
-        return
-    for j in range(L[i]):
-        DSP(pro*a[i][j], i+1)
-
-ans = 0
-DSP(1,0)
-print(ans)
+S = SS()
+common = ''
+for i in range(len(S)):
+    if i == 0:
+        if S[i] == S[i+1]:
+            common = S[i]
+        elif S[i] == S[i+2]:
+            print(i+2)
+            sys.exit()
+        else:
+            print(i+1)
+            sys.exit()
+    else:
+        if S[i] != common:
+            print(i+1)
+            sys.exit()

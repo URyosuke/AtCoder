@@ -13,24 +13,13 @@ def LS(): return list(sys.stdin.readline().rstrip().split())
 # S = MS()                        # 複数の文字列を空白区切りで与えられた時
 # A = LI()                        # シンプルに数列一行を読み込む
 # A = [LI() for _ in range(N)]    # N行の数字列を二次元配列に
-N,X = MI()
-L = []
-a = []
+N = SI()
+points = [LI() for _ in range(N)]
+max_dist = 0
 
 for i in range(N):
-    tmp = LI()
-    L.append(tmp[0])
-    a.append(list(tmp[1:]))
-
-def DSP(pro,i):
-    global ans
-    if i == N:
-        if pro == X:
-            ans += 1
-        return
-    for j in range(L[i]):
-        DSP(pro*a[i][j], i+1)
-
-ans = 0
-DSP(1,0)
-print(ans)
+    for j in range(i+1,N):
+        dist = math.sqrt((points[i][0]-points[j][0])**2 + (points[i][1]-points[j][1])**2)
+        if max_dist <= dist:
+            max_dist = dist
+print(max_dist)
