@@ -13,26 +13,34 @@ def LS(): return list(sys.stdin.readline().rstrip().split())
 # S = MS()                        # 複数の文字列を空白区切りで与えられた時
 # A = LI()                        # シンプルに数列一行を読み込む
 # A = [LI() for _ in range(N)]    # N行の数字列を二次元配列に
-N, L = MI()
-K = SI()
-A = LI()
+S = SS()
+S_list = list(S)
+S_rev_list = list(reversed(S_list))
+S_rev = ''.join(S_rev_list)
 
-def check(x):
-    num = 0
-    pre = 0
-    for i in range(N):
-        if A[i] - pre >= x:
-            num += 1
-            pre = A[i]
-    if L - pre >= x:
-        num += 1
-    return (num >= K+1)
-
-left, right = -1, L + 1
-while right - left > 1:
-    mid = (left + right) // 2
-    if check(mid):
-        left = mid
+tail_a = 0
+head_a = 0
+for i in range(len(S)):
+    if S[i] == 'a':
+        head_a += 1
     else:
-        right = mid
-print(left)
+        break
+
+for i in range(len(S_rev)):
+    if S_rev[i] == 'a':
+        tail_a += 1
+    else:
+        break
+
+if head_a > tail_a:
+    print('No')
+    sys.exit()
+
+S = 'a'*(tail_a-head_a) + S
+S_rev = S_rev + 'a'*(tail_a-head_a)
+
+if S == S_rev:
+    print('Yes')
+else:
+    print('No')
+    
