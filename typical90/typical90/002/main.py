@@ -13,3 +13,19 @@ def LS(): return list(sys.stdin.readline().rstrip().split())
 # S = MS()                        # 複数の文字列を空白区切りで与えられた時
 # A = LI()                        # シンプルに数列一行を読み込む
 # A = [LI() for _ in range(N)]    # N行の数字列を二次元配列に
+
+N = SI()
+ans = []
+
+
+def dfs(pare, length, right, left):
+    if right == left and length == N:
+        ans.append(pare)
+        return
+    if length < N:
+        if left <= right:
+            dfs(pare+'(', length+1, right+1, left)
+            dfs(pare+')', length+1, right, left+1)
+dfs('',0,0,0)
+sorted(ans)
+print('\n'.join(ans))
